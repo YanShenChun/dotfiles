@@ -1,6 +1,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" --- vundle settings
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -20,28 +21,30 @@ Plugin 'altercation/vim-colors-solarized'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+" --- basic settings
 set nu
 syntax on
 set softtabstop=4
 set shiftwidth=4
 set tabstop=4
-set smartindent shiftwidth=4
+set shiftwidth=4
+set smartindent
 
 set list
 set listchars=tab:>-,trail:.
 
+" --- airline & statusline settings
 if has('statusline')
 	set laststatus=2
 endif
 
-
 let g:solarized_termcolors=256
 set t_Co=256
 set background=dark
+let g:airline_theme = "cool"
+let g:airline_powerline_fonts = 1
 
+" --- color scheme
 if isdirectory(expand("~/.vim/bundle/vim-colors-solarized"))
 	colorscheme solarized
 endif
-
-let g:airline_theme = "cool"
-let g:airline_powerline_fonts = 1
