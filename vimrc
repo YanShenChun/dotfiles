@@ -17,6 +17,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'Rip-Rip/clang_complete'
+Plugin 'ianva/vim-youdao-translater'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -50,9 +51,14 @@ if isdirectory(expand("~/.vim/bundle/vim-colors-solarized"))
 	colorscheme solarized
 endif
 
-
+" --- clang_complete
 let g:clang_complete_copen = 1
 let g:clang_use_library = 1
 let g:clang_library_path = '/usr/lib/llvm-3.5/lib/'
 let g:clang_user_options='|| exit 0'
 let g:clang_complete_auto = 1
+
+" --- youdao_translate
+vnoremap <silent> <C-T> <Esc>:Ydv<CR> 
+nnoremap <silent> <C-T> <Esc>:Ydc<CR> 
+noremap <leader>yd :Yde<CR>
