@@ -18,6 +18,9 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'Rip-Rip/clang_complete'
 Plugin 'ianva/vim-youdao-translater'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'Shougo/neocomplete'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -26,14 +29,17 @@ filetype plugin indent on    " required
 " --- basic settings
 set nu
 syntax on
-set softtabstop=4
-set shiftwidth=4
-set tabstop=4
-set shiftwidth=4
+set softtabstop=2
+set shiftwidth=2
+set tabstop=2
+set shiftwidth=2
+set expandtab
 set smartindent
 
 set list
 set listchars=tab:>-,trail:.
+
+let mapleader = ','
 
 " --- airline & statusline settings
 if has('statusline')
@@ -62,3 +68,13 @@ let g:clang_complete_auto = 1
 vnoremap <silent> <C-T> <Esc>:Ydv<CR> 
 nnoremap <silent> <C-T> <Esc>:Ydc<CR> 
 noremap <leader>yd :Yde<CR>
+
+" -- syntastic
+" -- TODO: need to add the custom config 
+let g:syntastic_cpp_include_dirs=['/opt/opencv-2.4.9/include']
+
+" -- neocomplete
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
