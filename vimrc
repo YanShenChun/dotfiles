@@ -21,6 +21,10 @@ Plugin 'ianva/vim-youdao-translater'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Shougo/neocomplete'
+Plugin 'scrooloose/nerdtree'
+Plugin 'majutsushi/tagbar'
+Plugin 'kien/ctrlp.vim'
+Plugin 'godlygeek/tabular'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -38,6 +42,8 @@ set smartindent
 
 set list
 set listchars=tab:>-,trail:.
+
+set fdm=syntax
 
 let mapleader = ','
 
@@ -78,3 +84,22 @@ let g:syntastic_cpp_include_dirs=['/opt/opencv-2.4.9/include']
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
+
+
+" -- nerdtree,Tagbar,ctrlp
+map <C-n> :NERDTreeToggle<CR>
+map <C-m> :TagbarToggle<CR>
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+" -- tabular
+let mapleader=','
+    if exists(":Tabularize")
+      nmap <Leader>a= :Tabularize /=<CR>
+      vmap <Leader>a= :Tabularize /=<CR>
+      nmap <Leader>a: :Tabularize /:\zs<CR>
+      vmap <Leader>a: :Tabularize /:\zs<CR>
+      nmap <Leader>a; :Tabularize /\S\+;$/l1<CR>
+      vmap <Leader>a; :Tabularize /\S\+;$/l1<CR>
+
+endif
