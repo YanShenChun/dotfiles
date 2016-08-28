@@ -9,28 +9,26 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
+" basic plugin
 Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'kien/ctrlp.vim'
+" depend on perl ack script
+" e.g. brew install ack
+"Plugin 'mileszs/ack.vim'
+
+" appearance plugin
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'Rip-Rip/clang_complete'
-Plugin 'ianva/vim-youdao-translater'
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'Shougo/neocomplete'
-Plugin 'scrooloose/nerdtree'
-Plugin 'majutsushi/tagbar'
-Plugin 'kien/ctrlp.vim'
-Plugin 'godlygeek/tabular'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 " --- basic settings
+let mapleader = ','
 set nu
 syntax on
 set softtabstop=2
@@ -43,63 +41,42 @@ set smartindent
 set list
 set listchars=tab:>-,trail:.
 
-set fdm=syntax
-
-let mapleader = ','
+set foldenable
 
 " --- airline & statusline settings
 if has('statusline')
 	set laststatus=2
 endif
 
-let g:solarized_termcolors=256
-set t_Co=256
-set background=dark
-let g:airline_theme = "cool"
+" For ubuntu workaround
+"let g:solarized_termcolors=256
+"set t_Co=256
+"set background=dark
+"let g:airline_theme = "cool"
 let g:airline_powerline_fonts = 1
+if isdirectory(expand("~/.vim/bundle/vim-airline-themes/"))
+   if !exists('g:airline_theme')
+       let g:airline_theme = 'solarized'
+   endif
+   if !exists('g:airline_powerline_fonts')
+       " Use the default set of separators with a few customizations
+       let g:airline_left_sep='›'  " Slightly fancier than '>'
+       let g:airline_right_sep='‹' " Slightly fancier than '<'
+   endif
+endif
 
 " --- color scheme
 if isdirectory(expand("~/.vim/bundle/vim-colors-solarized"))
 	colorscheme solarized
 endif
 
-" --- clang_complete
-let g:clang_complete_copen = 1
-let g:clang_use_library = 1
-let g:clang_library_path = '/usr/lib/llvm-3.5/lib/'
-let g:clang_user_options='|| exit 0'
-let g:clang_complete_auto = 1
-
-" --- youdao_translate
-vnoremap <silent> <C-T> <Esc>:Ydv<CR> 
-nnoremap <silent> <C-T> <Esc>:Ydc<CR> 
-noremap <leader>yd :Yde<CR>
-
-" -- syntastic
-" -- TODO: need to add the custom config 
-let g:syntastic_cpp_include_dirs=['/opt/opencv-2.4.9/include']
-
-" -- neocomplete
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-
-
-" -- nerdtree,Tagbar,ctrlp
-map <C-n> :NERDTreeToggle<CR>
-map <C-m> :TagbarToggle<CR>
+" -- nerdtree,ctrlp
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+nnoremap <leader>e :NERDTreeToggle<CR>
 
-" -- tabular
-let mapleader=','
-    if exists(":Tabularize")
-      nmap <Leader>a= :Tabularize /=<CR>
-      vmap <Leader>a= :Tabularize /=<CR>
-      nmap <Leader>a: :Tabularize /:\zs<CR>
-      vmap <Leader>a: :Tabularize /:\zs<CR>
-      nmap <Leader>a; :Tabularize /\S\+;$/l1<CR>
-      vmap <Leader>a; :Tabularize /\S\+;$/l1<CR>
-
-endif
+" shortcut
+"nnoremap <leader>f :vimgrep<space>
+"nnoremap <leader>f :vimgrep // %<left><left><left>
+nnoremap <leader>f :vimgrep // %\|cw<left><left><left><left><left><left>
+"nnoremap <leader>f :vimgrep // %<CR>:ccl<CR>:cwin<CR><C-W>J:nohls<CR>

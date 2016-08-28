@@ -87,20 +87,20 @@ source $ZSH/oh-my-zsh.sh
 
 alias tmux="tmux -2"
 
-export JAVA_HOME=~/work/opt/jdk-7u80-linux-x64
-export CLASSPATH=.:$JAVA_HOME/lib:$JAVA_HOME/jre/lib:$CLASSPATH
-export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
+#export JAVA_HOME=~/work/opt/jdk-7u80-linux-x64
+#export CLASSPATH=.:$JAVA_HOME/lib:$JAVA_HOME/jre/lib:$CLASSPATH
+#export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
 
 # fix eclipse hang on ubuntu 16.04
 # refer to http://blog.csdn.net/c1481118216/article/details/51495221
 export SWT_GTK3=0
 
 # erlang
-export ERL_HOME=~/work/opt/erlang_otp_18.3
-export PATH=$ERL_HOME/bin:$PATH
+#export ERL_HOME=~/work/opt/erlang_otp_18.3
+#export PATH=$ERL_HOME/bin:$PATH
 #
 ## rabbitmq
 #export RABBIT_MQ_HOME=~/work/opt/rabbitmq-3.6.2/lib/rabbitmq_server-3.6.2
 #export PATH=$RABBIT_MQ_HOME/sbin:$PATH
 
-export PATH=~/.dotfiles/cloc:$PATH
+#export PATH=~/.dotfiles/cloc:$PATH
