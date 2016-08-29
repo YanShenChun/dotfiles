@@ -104,3 +104,19 @@ export SWT_GTK3=0
 #export PATH=$RABBIT_MQ_HOME/sbin:$PATH
 
 #export PATH=~/.dotfiles/cloc:$PATH
+
+export PATH=~/.dotfiles:$PATH
+
+alias switch-cc="switch-cc.sh"
+
+# go
+export GOROOT=$HOME/work/opt/go
+export PATH=$PATH:$GOROOT/bin
+
+# mongodb
+export PATH=$PATH:/home/ted-u/work/opt/mongodb/mongodb-linux-x86_64-ubuntu1604-3.2.8/bin
+
+#
+export PATH=$PATH:/$HOME/work/opt/tools
+
+alias sl="svn log | svn_short_log"
