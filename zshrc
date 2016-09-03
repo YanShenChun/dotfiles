@@ -120,3 +120,4 @@ export PATH=$PATH:/home/ted-u/work/opt/mongodb/mongodb-linux-x86_64-ubuntu1604-3
 export PATH=$PATH:/$HOME/work/opt/tools
 
 alias sl="svn log | svn_short_log"
+alias vi="/usr/local/bin/vim"
