@@ -110,7 +110,10 @@ export PATH=~/.dotfiles:$PATH
 alias switch-cc="switch-cc.sh"
 
 # go
-export GOROOT=$HOME/work/opt/go
+#export GOROOT=$HOME/work/opt/go
+#export GOROOT=/usr/local/Cellar/go/1.7
+# mac brew install must be this
+export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOROOT/bin
 
 # mongodb
