@@ -6,6 +6,35 @@
 
 set nocompatible              " be iMproved, required
 
+" Windows compatible {
+" Stolen from spf13-vim
+if has('win32') || has('win64')
+    set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+    " Be nice and check for multi_byte even if the config requires
+    " multi_byte support most of the time
+    if has("multi_byte")
+        " Windows cmd.exe still uses cp850. If Windows ever moved to
+        " Powershell as the primary terminal, this would be utf-8
+        set termencoding=cp850
+        " Let Vim use utf-8 internally, because many scripts require this
+        set encoding=utf-8
+        setglobal fileencoding=utf-8
+        " Windows has traditionally used cp1252, so it's probably wise to
+        " fallback into cp1252 instead of eg. iso-8859-15.
+        " Newer Windows files might contain utf-8 or utf-16 LE so we might
+        " want to try them first.
+        set fileencodings=ucs-bom,utf-8,utf-16le,cp1252,iso-8859-15
+    endif
+
+    set guioptions-=T
+    set guioptions-=m
+    set guioptions-=L
+    set guioptions-=r
+    set guioptions-=b
+    set guioptions-=e
+endif
+" }
+
 " Load the user custom settings {
 if filereadable(expand("~/.vimrc.local"))
     source ~/.vimrc.local
@@ -129,6 +158,9 @@ nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 if isdirectory(expand("~/.vim/bundle/vim-airline"))
     let g:airline_powerline_fonts = 1
     let g:airline#extensions#tabline#enabled = 1
+    if has("gui_running")
+        set guifont=Sauce_Code_Powerline:h10:cANSI
+    endif
 endif
 " }
 
@@ -144,6 +176,13 @@ if isdirectory(expand("~/.vim/bundle/vim-colors-solarized"))
           set t_Co=256
           set background=dark
        endif
+    endif
+    
+    if has('win32') || has('win64')
+        let g:solarized_termcolors=256
+        let g:solarized_termtrans=1
+        let g:solarized_contrast="normal"
+        let g:solarized_visibility="normal"
     endif
 endif
 "}
