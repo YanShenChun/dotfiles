@@ -15,7 +15,12 @@ if has('win32') || has('win64')
     if has("multi_byte")
         " Windows cmd.exe still uses cp850. If Windows ever moved to
         " Powershell as the primary terminal, this would be utf-8
-        set termencoding=utf-8
+        if has("gui_running")
+            set termencoding=utf-8
+        else
+            set termencoding=cp936
+        endif
+
         " Let Vim use utf-8 internally, because many scripts require this
         set encoding=utf-8
         setglobal fileencoding=utf-8
@@ -119,8 +124,12 @@ endif
 
 " Formatting: Tab, Spaces, Fold {
 set list
-"set listchars=tab:>-,trail:.
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+
+if has('win32') || has('win64')
+    set listchars=tab:>-,trail:.
+else
+    set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+endif
 
 " default settings
 set foldenable
@@ -164,10 +173,10 @@ nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " (optional) airline {
 if isdirectory(expand("~/.vim/bundle/vim-airline"))
-    let g:airline_powerline_fonts = 1
     let g:airline#extensions#tabline#enabled = 1
-    if has("gui_running")
+    if has("gui_running") || (!has('win32') && !has('win64'))
         set guifont=Sauce_Code_Powerline:h10:cANSI
+        let g:airline_powerline_fonts = 1
     endif
 endif
 " }
@@ -185,12 +194,16 @@ if isdirectory(expand("~/.vim/bundle/vim-colors-solarized"))
           set background=dark
        endif
     endif
-    
     if has('win32') || has('win64')
         let g:solarized_termcolors=256
         let g:solarized_termtrans=1
         let g:solarized_contrast="normal"
         let g:solarized_visibility="normal"
+
+        " rollback to origin since windows cmd not support solarized
+        if !has('gui_running')
+            colorscheme default
+        endif
     endif
 endif
 "}
