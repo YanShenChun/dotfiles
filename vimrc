@@ -15,7 +15,7 @@ if has('win32') || has('win64')
     if has("multi_byte")
         " Windows cmd.exe still uses cp850. If Windows ever moved to
         " Powershell as the primary terminal, this would be utf-8
-        set termencoding=cp850
+        set termencoding=utf-8
         " Let Vim use utf-8 internally, because many scripts require this
         set encoding=utf-8
         setglobal fileencoding=utf-8
@@ -24,8 +24,16 @@ if has('win32') || has('win64')
         " Newer Windows files might contain utf-8 or utf-16 LE so we might
         " want to try them first.
         set fileencodings=ucs-bom,utf-8,utf-16le,cp1252,iso-8859-15
+
+        " menu messy code
+        source $VIMRUNTIME/delmenu.vim
+        source $VIMRUNTIME/menu.vim
+
+        " vim prompt messy code
+        language messages zh_CN.utf-8
     endif
 
+    " remove the gui menus
     set guioptions-=T
     set guioptions-=m
     set guioptions-=L
