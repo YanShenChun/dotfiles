@@ -35,7 +35,7 @@ if has('win32') || has('win64')
         source $VIMRUNTIME/menu.vim
 
         " vim prompt messy code
-        language messages zh_CN.utf-8
+        language messages en_US.utf-8
     endif
 
     " remove the gui menus
@@ -45,6 +45,15 @@ if has('win32') || has('win64')
     set guioptions-=r
     set guioptions-=b
     set guioptions-=e
+
+    " conemu
+    set termencoding=utf-8
+    set term=xterm
+    set t_Co=256
+    let &t_AB="\e[48;5;%dm"
+    let &t_AF="\e[38;5;%dm"
+    inoremap <Char-0x07F> <BS>
+    nnoremap <Char-0x07F> <BS>
 endif
 " }
 
@@ -180,8 +189,8 @@ if isdirectory(expand("~/.vim/bundle/vim-airline"))
     let g:airline#extensions#tabline#enabled = 1
     if has("gui_running") || (!has('win32') && !has('win64'))
         set guifont=Sauce_Code_Powerline:h10:cANSI
-        let g:airline_powerline_fonts = 1
     endif
+    let g:airline_powerline_fonts = 1
 endif
 " }
 
@@ -276,3 +285,16 @@ function! StripTrailingWhitespace()
 endfunction
 
 " }
+
+"let g:airline_symbols = {}
+"let g:airline_left_sep = "\u2b80" "use double quotes here
+"let g:airline_left_alt_sep = "\u2b81"
+"let g:airline_right_sep = "\u2b82"
+"let g:airline_right_alt_sep = "\u2b83"
+"let g:airline_symbols.branch = "\u2b60"
+"let g:airline_symbols.readonly = "\u2b64"
+"let g:airline_symbols.linenr = "\u2b61"
+
+"let g:solarized_termcolors=256
+
+
