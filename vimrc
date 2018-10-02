@@ -92,10 +92,6 @@ if count(g:bundle_groups, 'ycm')
     Plugin 'Valloric/YouCompleteMe'
 endif
 
-if count(g:bundle_groups, 'cpp')
-    Plugin 'rhysd/vim-clang-format'
-endif
-
 if count(g:bundle_groups, 'python')
     Plugin 'nvie/vim-flake8'
     Plugin 'tmhedberg/SimpylFold'
@@ -220,13 +216,6 @@ if isdirectory(expand("~/.vim/bundle/vim-colors-solarized"))
     endif
 endif
 "}
-
-" (optional) vim-clang-format {
-if isdirectory(expand("~/.vim/bundle/vim-clang-format"))
-    autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-    autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
-endif
-" }
 
 " (optional) SimplyIFold {
 if isdirectory(expand("~/.vim/bundle/SimpylFold"))
