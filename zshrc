@@ -99,6 +99,6 @@ export PATH=~/.dotfiles:$PATH
 
 alias switch-cc="switch-cc.sh"
 
-if [ -f ~/.zshrc.local]; then
+if [ -f ~/.zshrc.local ]; then
   echo "Loading user config:~/.zshrc.local"
 fi
