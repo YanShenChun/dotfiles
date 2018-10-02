@@ -35,7 +35,7 @@ ZSH_THEME="robbyrussell"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -95,32 +95,10 @@ alias tmux="tmux -2"
 # refer to http://blog.csdn.net/c1481118216/article/details/51495221
 export SWT_GTK3=0
 
-# erlang
-#export ERL_HOME=~/work/opt/erlang_otp_18.3
-#export PATH=$ERL_HOME/bin:$PATH
-#
-## rabbitmq
-#export RABBIT_MQ_HOME=~/work/opt/rabbitmq-3.6.2/lib/rabbitmq_server-3.6.2
-#export PATH=$RABBIT_MQ_HOME/sbin:$PATH
-
-#export PATH=~/.dotfiles/cloc:$PATH
-
 export PATH=~/.dotfiles:$PATH
 
 alias switch-cc="switch-cc.sh"
 
-# go
-#export GOROOT=$HOME/work/opt/go
-#export GOROOT=/usr/local/Cellar/go/1.7
-# mac brew install must be this
-export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOROOT/bin
-
-# mongodb
-export PATH=$PATH:/home/ted-u/work/opt/mongodb/mongodb-linux-x86_64-ubuntu1604-3.2.8/bin
-
-#
-export PATH=$PATH:/$HOME/work/opt/tools
-
-alias sl="svn log | svn_short_log"
-alias vi="/usr/local/bin/vim"
+if [ -f ~/.zshrc.local]; then
+  echo "Loading user config:~/.zshrc.local"
+fi
