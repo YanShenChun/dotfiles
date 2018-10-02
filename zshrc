@@ -101,4 +101,5 @@ alias switch-cc="switch-cc.sh"
 
 if [ -f ~/.zshrc.local ]; then
   echo "Loading user config:~/.zshrc.local"
+  source ~/.zshrc.local
 fi
