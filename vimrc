@@ -116,6 +116,11 @@ set smartindent
 set autoindent
 set encoding=utf-8
 set textwidth=79
+set incsearch
+set hlsearch
+set ignorecase
+set history=1000
+set spell
 if has('statusline')
     set laststatus=2
     set statusline=%<%f\                     " Filename
@@ -258,6 +263,14 @@ nnoremap <Leader>n :bnext<CR>
 nnoremap <leader><space> :call StripTrailingWhitespace()<CR>
 " }
 
+" clang-format {
+if exists('g:clang_format_py_path')
+    execute "map <C-K> :py3f " . g:clang_format_py_path . "<cr>"
+    execute "imap <C-K> <c-o>:py3f " . g:clang_format_py_path . "<cr>"
+    execute "map <C-N> ggVG :py3f " . g:clang_format_py_path . "<cr>"
+endif
+" }
+
 " }
 
 " Functions {
@@ -272,6 +285,20 @@ function! StripTrailingWhitespace()
     let @/=_s
     call cursor(l, c)
 endfunction
+
+if !exists('g:no_restore_cursor')
+    function! ResCur()
+        if line("'\"") <= line("$")
+            silent! normal! g`"
+            return 1
+        endif
+    endfunction
+
+    augroup resCur
+        autocmd!
+        autocmd BufWinEnter * call ResCur()
+    augroup END
+endif
 
 " }
 
