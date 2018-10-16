@@ -96,6 +96,7 @@ alias tmux="tmux -2"
 export SWT_GTK3=0
 
 export PATH=~/.dotfiles:$PATH
+export PATH=~/.dotfiles/cloc:$PATH
 
 alias switch-cc="switch-cc.sh"
 
