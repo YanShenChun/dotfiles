@@ -57,6 +57,10 @@ if has('win32') || has('win64')
 endif
 " }
 
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
+set encoding=utf-8
+
 " Load the user custom settings {
 if filereadable(expand("~/.vimrc.local"))
     source ~/.vimrc.local
@@ -120,7 +124,7 @@ set incsearch
 set hlsearch
 set ignorecase
 set history=1000
-set spell
+"set spell
 if has('statusline')
     set laststatus=2
     set statusline=%<%f\                     " Filename
@@ -265,9 +269,13 @@ nnoremap <leader><space> :call StripTrailingWhitespace()<CR>
 
 " clang-format {
 if exists('g:clang_format_py_path')
-    execute "map <C-K> :py3f " . g:clang_format_py_path . "<cr>"
-    execute "imap <C-K> <c-o>:py3f " . g:clang_format_py_path . "<cr>"
-    execute "map <C-N> ggVG :py3f " . g:clang_format_py_path . "<cr>"
+    "execute "map <C-K> :py3f " . g:clang_format_py_path . "<cr>"
+    "execute "imap <C-K> <c-o>:py3f " . g:clang_format_py_path . "<cr>"
+    "execute "map <C-N> ggVG :py3f " . g:clang_format_py_path . "<cr>"
+
+    execute "map <C-K> :pyf " . g:clang_format_py_path . "<cr>"
+    execute "imap <C-K> <c-o>:pyf " . g:clang_format_py_path . "<cr>"
+    execute "map <C-N> ggVG :pyf " . g:clang_format_py_path . "<cr>"
 endif
 " }
 
